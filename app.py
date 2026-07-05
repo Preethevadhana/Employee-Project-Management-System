@@ -1,43 +1,51 @@
 import streamlit as st
 
-# Page Configuration
+from modules.dashboard import dashboard_page
+from modules.employee import employee_page
+from modules.department import department_page
+from modules.project import project_page
+from modules.task import task_page
+from modules.attendance import attendance_page
+from modules.reports import reports_page
+
 st.set_page_config(
     page_title="Enterprise Employee & Project Management System",
     page_icon="🏢",
     layout="wide"
 )
 
-# Title
-st.title("🏢 Enterprise Employee & Project Management System")
+st.sidebar.title("🏢 Enterprise System")
 
-st.write("""
-Welcome to the Enterprise Employee & Project Management System.
+menu = st.sidebar.radio(
+    "Navigation",
+    [
+        "Dashboard",
+        "Employees",
+        "Departments",
+        "Projects",
+        "Tasks",
+        "Attendance",
+        "Reports"
+    ]
+)
 
-This application helps organizations manage:
+if menu == "Dashboard":
+    dashboard_page()
 
-- 👨‍💼 Employees
-- 🏢 Departments
-- 📁 Projects
-- ✅ Tasks
-- 📅 Attendance
-- 📊 Analytics Dashboard
-- 📄 Reports
-""")
+elif menu == "Employees":
+    employee_page()
 
-st.header("📊 Dashboard")
+elif menu == "Departments":
+    department_page()
 
-col1, col2, col3, col4 = st.columns(4)
+elif menu == "Projects":
+    project_page()
 
-with col1:
-    st.metric("Total Employees", "120")
+elif menu == "Tasks":
+    task_page()
 
-with col2:
-    st.metric("Active Projects", "15")
+elif menu == "Attendance":
+    attendance_page()
 
-with col3:
-    st.metric("Completed Projects", "30")
-
-with col4:
-    st.metric("Pending Tasks", "48")
-
-st.success("System is running successfully.")
+elif menu == "Reports":
+    reports_page()
