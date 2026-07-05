@@ -31,3 +31,15 @@ class Employee(Base):
     phone = Column(String(15))
     designation = Column(String(100))
     department_id = Column(Integer, ForeignKey("departments.id"))
+
+
+class Project(Base):
+    __tablename__ = "projects"
+
+    id = Column(Integer, primary_key=True, index=True)
+    project_name = Column(String(150), nullable=False)
+    description = Column(String(500))
+    start_date = Column(String(20))
+    end_date = Column(String(20))
+    status = Column(String(50))
+    department_id = Column(Integer, ForeignKey("departments.id"))
